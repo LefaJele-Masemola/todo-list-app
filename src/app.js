@@ -1,6 +1,7 @@
 const express = require('express');
 const connectDB = require('./config/db');
 const taskRoutes = require('./routes/operations');
+require('dotenv').config(); // Load .env variables
 
 const app = express();
 
