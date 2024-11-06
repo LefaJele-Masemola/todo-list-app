@@ -1,5 +1,6 @@
 const mongoose = require ('mongoose');
 
+//defined task schema
 const taskSchema = new mongoose.Schema({
     title:{
         type: String,
@@ -21,6 +22,8 @@ const taskSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
+},{
+     timestamps: true,
 });
 
 const Task = mongoose.model('Task', taskSchema);
