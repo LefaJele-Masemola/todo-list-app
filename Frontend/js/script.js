@@ -2,7 +2,7 @@
 document.addEventListener("DOMContentLoaded", loadOperations);
 
 function loadOperations() {
-    fetch('http://localhost:5000/api/operations')
+    fetch('/api/operations')
         .then(response => response.json())
         .then(operationData => {
             const operationContainer = document.getElementById('tasks-container');

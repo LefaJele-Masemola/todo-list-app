@@ -11,6 +11,9 @@ connectDB();
 // Middleware to parse JSON
 app.use(express.json());
 
+// Serve static files from the 'Frontend' folder
+app.use(express.static('Frontend'));
+
 app.get('/', (req, res) => {
     res.send('Server is up and running!');
   });
