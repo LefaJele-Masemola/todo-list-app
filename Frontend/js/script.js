@@ -12,6 +12,15 @@ const loadTasks = () => {
         listItem.classList.add('task-item');
         listItem.dataset.id = task.id;
 
+         // Add importance class based on task's importance level
+         if (task.importance === 'Low') {
+            listItem.classList.add('low');
+        } else if (task.importance === 'Medium') {
+            listItem.classList.add('medium');
+        } else if (task.importance === 'High') {
+            listItem.classList.add('high');
+        }
+
         const createdAt = new Date(task.createdAt).toLocaleString();
 
         listItem.innerHTML = `
@@ -53,6 +62,7 @@ const addNewTask = () => {
         name: taskDescription,
         completed: false,
         reminder: taskReminder || null,
+        importance: taskImportance,
         createdAt: new Date().toISOString()
     };
 
