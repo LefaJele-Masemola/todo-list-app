@@ -14,10 +14,19 @@
         <input type="text" id="task-input" placeholder="Task description" required>
         <button onclick="addNewTask()">Add Task</button>
 
+        <label for="importance">Importance:</label>
+        <select id="importance">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
+          
         <h3>Active Tasks:</h3>
         <ul class="task-list" id="tasks-container"></ul>
     </div>
 
-    <script src="js/script.js"></script>
+        <!-- Include main script which imports notifications -->
+        <script type="module" src="js/script.js"></script>
+        <script type="module" src="js/notifications.js"></script> 
 </body>
 </html>

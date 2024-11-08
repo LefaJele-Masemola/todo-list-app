@@ -1,34 +1,18 @@
-// Check notification permission and request if not granted
-export function requestNotificationPermission() {
-    if (Notification.permission !== 'granted') {
-        Notification.requestPermission().then(permission => {
-            if (permission === 'granted') {
-                console.log('Notification permission granted');
-            } else {
-                console.log('Notification permission denied');
-            }
-        });
+// Request permission for desktop notifications
+export const requestNotificationPermission = () => {
+    if ("Notification" in window && Notification.permission !== "granted") {
+        Notification.requestPermission();
     }
-}
+};
 
-// Show desktop notification
-export function showDesktopNotification(title, message) {
-    if (Notification.permission === 'granted') {
-        const notification = new Notification(title, {
-            body: message,
-            icon: 'icon.png',  // Optional: Path to your icon
-            tag: 'task-notification',  // Optional: A tag to group notifications
-        });
-
-        // Optional: Add an event listener to handle clicks on the notification
-        notification.onclick = () => {
-            console.log('Notification clicked!');
-            // You can redirect or trigger another action here
-        };
-
-        // Close the notification after 5 seconds
-        setTimeout(() => notification.close(), 5000);
+// Function to show a desktop notification
+export const showNotification = (title, options = {}) => {
+    if ("Notification" in window && Notification.permission === "granted") {
+        new Notification(title, options);
     } else {
-        console.log('Notification permission not granted');
+        console.log("Notifications are not supported or permission is denied.");
     }
-}
+};
+
+// Request notification permission once when the page loads
+document.addEventListener("DOMContentLoaded", requestNotificationPermission);

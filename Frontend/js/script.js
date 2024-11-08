@@ -1,3 +1,6 @@
+// Import the showNotification function from notifications.js
+import { showNotification } from './notifications.js';
+
 // Load tasks from LocalStorage
 const loadTasks = () => {
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
@@ -42,6 +45,7 @@ const addNewTask = () => {
     if (!taskDescription) return;
 
     const taskReminder = prompt("Set a reminder (optional):");
+    const taskImportance = document.getElementById('importance').value;
 
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
     const newTask = {
@@ -56,6 +60,9 @@ const addNewTask = () => {
     saveTasks(tasks); // Save updated tasks to LocalStorage
     loadTasks(); // Refresh task list
     document.getElementById('task-input').value = ''; // Clear input field
+
+    // Show notification when a new task is added
+    showNotification("Task Added", { body: `New task: ${taskDescription}` });
 };
 
 // Mark task as completed in LocalStorage
@@ -66,6 +73,9 @@ const completeTask = (id) => {
         task.completed = true;
         saveTasks(tasks); // Save updated tasks to LocalStorage
         loadTasks(); // Refresh task list
+
+        // Show notification when a task is completed
+        showNotification("Task Completed", { body: `Task completed: ${task.name}` });
     }
 };
 
@@ -76,6 +86,11 @@ const removeTask = (id) => {
     saveTasks(tasks); // Save updated tasks to LocalStorage
     loadTasks(); // Refresh task list
 };
+
+// Expose functions to global scope for HTML to access
+window.addNewTask = addNewTask;
+window.completeTask = completeTask;
+window.removeTask = removeTask;
 
 // Initial load of tasks when the page is ready
 document.addEventListener("DOMContentLoaded", loadTasks);
