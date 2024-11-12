@@ -12,7 +12,6 @@
 
         <h3>Enter a Task:</h3>
         <input type="text" id="task-input" placeholder="Task description" required>
-        <button onclick="addNewTask()">Add Task</button>
 
         <label for="due-date">Due Date:</label>
         <!-- Date and time picker input -->
@@ -25,6 +24,9 @@
             <option value="Medium">Medium</option>
             <option value="High">High</option>
           </select>
+          
+          <button onclick="addNewTask()">Add Task</button>
+
           
         <h3>Active Tasks:</h3>
         <ul class="task-list" id="tasks-container"></ul>

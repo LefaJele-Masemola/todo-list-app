@@ -112,3 +112,37 @@ window.removeTask = removeTask;
 
 // Initial load of tasks when the page is ready
 document.addEventListener("DOMContentLoaded", loadTasks);
+
+
+//task suggestions
+const suggestTasks = (tasks) => {
+    const now = new Date();
+    let suggestions = [];
+
+    tasks.forEach(task => {
+        const dueDate = new Date(task.dueDate);
+        const hoursUntilDue = (dueDate - now) / (1000 * 60 * 60);
+
+        // Rule 1: Urgent tasks due within 24 hours
+        if (hoursUntilDue < 24 && task.priority === 'High') {
+            suggestions.push(task);
+        }
+        // Rule 2: Work tasks on weekdays
+        else if (task.category === 'Work' && [1, 2, 3, 4, 5].includes(now.getDay())) {
+            suggestions.push(task);
+        }
+        // Rule 3: Tasks based on user's past time of completion
+        else if (task.preferredTime === getCurrentTimeOfDay()) {
+            suggestions.push(task);
+        }
+    });
+
+    return suggestions.slice(0, 3); // Limit suggestions to top 3
+};
+
+const getCurrentTimeOfDay = () => {
+    const hour = new Date().getHours();
+    if (hour < 12) return 'morning';
+    else if (hour < 18) return 'afternoon';
+    return 'evening';
+};
