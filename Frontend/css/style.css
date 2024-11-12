@@ -74,8 +74,9 @@ button:hover {
 
 button.complete {
     background-color: #ffc107;
-    color: #fff;
-    padding: 5px 10px;
+    color: #1a1919;
+    margin: 15px;
+    padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -83,16 +84,18 @@ button.complete {
     align-items: center;
     justify-content: center;
     position: relative;
-    transition: background-color 0.3s ease, transform 0.5s ease-in-out;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%; /* Makes the button round */
+    transition: background-color 0.3s, transform 0.5s;
+    border-radius: 25px; /* Makes the button pill-shaped */
 }
 
 /* Button moves (glides) when clicked to show completion */
 button.complete.completed {
     transform: translateX(20px); /* Move the button to the right */
     background-color: #28a745; /* Green when completed */
+}
+
+button.complete:active {
+    transform: scale(0.95); /* Slightly smaller on click */
 }
 
 
@@ -112,6 +115,40 @@ button.complete:hover, button.delete:hover {
 .task-item:hover {
     transform: scale(1.02);
 }
+
+/* Pill Button for Complete Toggle */
+.task-item .complete {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 24px;
+    background-color: #ccc; /* Background for incomplete state */
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.task-item .complete::before {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.3s ease;
+}
+
+/* Style when task is marked as completed */
+.task-item.completed .complete {
+    background-color: #4CAF50; /* Background color for completed state */
+}
+
+.task-item.completed .complete::before {
+    transform: translateX(36px); /* Move the toggle circle to the right */
+}
+
 
 .reminder {
     font-size: 12px;

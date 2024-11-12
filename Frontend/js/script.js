@@ -77,7 +77,7 @@ const addNewTask = () => {
     showNotification("Task Added", { body: `New task: ${taskDescription}` });
 };
 
-// Mark task as completed or incomplete in LocalStorage
+/// Mark task as completed and toggle button
 const completeTask = (id) => {
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
     const task = tasks.find(task => task.id === id);
@@ -86,11 +86,11 @@ const completeTask = (id) => {
         saveTasks(tasks); // Save updated tasks to LocalStorage
         loadTasks(); // Refresh task list
 
-        // Show notification based on task status
-        const status = task.completed ? "completed" : "marked incomplete";
-        showNotification("Task Status Changed", { body: `Task ${status}: ${task.name}` });
+        // Show notification when a task is completed
+        showNotification("Task Updated", { body: `Task status: ${task.completed ? 'Completed' : 'Incomplete'} - ${task.name}` });
     }
 };
+
 
 // Delete task from LocalStorage
 const removeTask = (id) => {
