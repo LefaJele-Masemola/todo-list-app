@@ -79,7 +79,22 @@ button.complete {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: background-color 0.3s ease, transform 0.5s ease-in-out;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%; /* Makes the button round */
 }
+
+/* Button moves (glides) when clicked to show completion */
+button.complete.completed {
+    transform: translateX(20px); /* Move the button to the right */
+    background-color: #28a745; /* Green when completed */
+}
+
 
 button.delete {
     background-color: #dc3545;

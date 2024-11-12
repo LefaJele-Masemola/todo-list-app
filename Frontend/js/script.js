@@ -30,9 +30,11 @@ const loadTasks = () => {
                 <div class="reminder">Reminder: ${task.reminder || 'No reminder set'}</div>
             </div>
             <div>
-                <button class="complete" onclick="completeTask('${task.id}')">Complete</button>
-                <button class="delete" onclick="removeTask('${task.id}')">Delete</button>
-            </div>
+                 <button class="complete ${task.completed ? 'completed' : ''}" onclick="completeTask('${task.id}')">
+            ${task.completed ? "Completed" : "Complete"}
+        </button>
+        <button class="delete" onclick="removeTask('${task.id}')">Delete</button>
+    </div>
         `;
 
         if (task.completed) {
@@ -75,17 +77,18 @@ const addNewTask = () => {
     showNotification("Task Added", { body: `New task: ${taskDescription}` });
 };
 
-// Mark task as completed in LocalStorage
+// Mark task as completed or incomplete in LocalStorage
 const completeTask = (id) => {
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
     const task = tasks.find(task => task.id === id);
     if (task) {
-        task.completed = true;
+        task.completed = !task.completed; // Toggle completion
         saveTasks(tasks); // Save updated tasks to LocalStorage
         loadTasks(); // Refresh task list
 
-        // Show notification when a task is completed
-        showNotification("Task Completed", { body: `Task completed: ${task.name}` });
+        // Show notification based on task status
+        const status = task.completed ? "completed" : "marked incomplete";
+        showNotification("Task Status Changed", { body: `Task ${status}: ${task.name}` });
     }
 };
 
