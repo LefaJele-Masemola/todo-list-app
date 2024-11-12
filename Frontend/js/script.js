@@ -22,6 +22,16 @@ const showFloatingSuggestions = () => {
     });
 };
 
+// Function to toggle Focus Mode overlay
+function toggleFocusMode() {
+    const overlay = document.getElementById('focusOverlay');
+    overlay.style.display = overlay.style.display === 'flex' ? 'none' : 'flex';
+}
+
+// Export the function for HTML access
+window.toggleFocusMode = toggleFocusMode;
+
+
 // Load suggestions when the page is ready
 document.addEventListener("DOMContentLoaded", showFloatingSuggestions);
 

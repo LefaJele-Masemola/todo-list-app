@@ -10,6 +10,8 @@
     <div class="container">
         <h1>Task Manager</h1>
 
+<!-- Button to toggle Focus Mode -->
+        <button id="focusModeBtn" onclick="toggleFocusMode()">Enable Focus Mode</button>
         <div id="floatingSuggestions" class="suggestionsContainer"></div>
 
 
@@ -33,6 +35,15 @@
           
         <h3>Active Tasks:</h3>
         <ul class="task-list" id="tasks-container"></ul>
+    </div>
+
+     <!-- Focus Mode Overlay -->
+     <div id="focusOverlay" class="focus-overlay">
+        <div class="focus-content">
+            <h2>Focus Mode</h2>
+            <p>Stay focused! Clear your tasks and achieve your goals.</p>
+            <button onclick="toggleFocusMode()">Exit Focus Mode</button>
+        </div>
     </div>
 
         <!-- Include main script which imports notifications -->
