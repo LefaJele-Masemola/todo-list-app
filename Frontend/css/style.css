@@ -7,6 +7,36 @@ body {
     justify-content: center;
 }
 
+.suggestionsContainer {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+}
+
+.suggestionBubble {
+    position: absolute;
+    padding: 10px 15px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 0.9rem;
+    text-align: center;
+    animation: floatAnimation 10s infinite;
+    opacity: 0.9;
+}
+
+/* Customize bubble colors */
+.suggestionBubble.lowPriority { background-color: #4caf50; }
+.suggestionBubble.mediumPriority { background-color: #ff9800; }
+.suggestionBubble.highPriority { background-color: #f44336; }
+
+@keyframes floatAnimation {
+    0% { transform: translate(0, 0); }
+    50% { transform: translate(20px, -30px); }
+    100% { transform: translate(-10px, 10px); }
+}
+
+
 .container {
     max-width: 600px;
     margin: 0 auto;

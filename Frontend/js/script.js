@@ -1,6 +1,30 @@
 // Import the showNotification function from notifications.js
 import { showNotification } from './notifications.js';
 
+const suggestionData = [
+    { text: "Take breaks!", priority: "low" },
+    { text: "Prioritize tasks!", priority: "medium" },
+    { text: "Complete urgent items!", priority: "high" }
+];
+
+const showFloatingSuggestions = () => {
+    const container = document.getElementById('floatingSuggestions');
+    container.innerHTML = '';
+
+    suggestionData.forEach((suggestion, index) => {
+        const bubble = document.createElement('div');
+        bubble.className = `suggestionBubble ${suggestion.priority}Priority`;
+        bubble.style.top = `${Math.random() * 80}%`;
+        bubble.style.left = `${Math.random() * 80}%`;
+        bubble.style.animationDelay = `${index * 1.5}s`;
+        bubble.textContent = suggestion.text;
+        container.appendChild(bubble);
+    });
+};
+
+// Load suggestions when the page is ready
+document.addEventListener("DOMContentLoaded", showFloatingSuggestions);
+
 // Load tasks from LocalStorage
 const loadTasks = () => {
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
