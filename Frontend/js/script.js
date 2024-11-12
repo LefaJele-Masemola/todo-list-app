@@ -27,7 +27,7 @@ const loadTasks = () => {
             <div>
                 <h4>${task.name}</h4>
                 <div class="date-time">Added on: ${createdAt}</div>
-                <div class="reminder">Reminder: ${task.reminder || 'No reminder set'}</div>
+                <div class="reminder">Reminder: ${task.reminder ? task.reminder: 'No reminder set'}</div>
             </div>
             <div>
                  <button class="complete ${task.completed ? 'completed' : ''}" onclick="completeTask('${task.id}')">
@@ -53,17 +53,20 @@ const saveTasks = (tasks) => {
 // Add new task to LocalStorage
 const addNewTask = () => {
     const taskDescription = document.getElementById('task-input').value;
+    const reminderDate = document.getElementById('reminder-date').value;
+    const reminderTime = document.getElementById('reminder-time').value;
+    const taskImportance = document.getElementById('importance').value;
     if (!taskDescription) return;
 
-    const taskReminder = prompt("Set a reminder (optional):");
-    const taskImportance = document.getElementById('importance').value;
+    // Combine date and time for the reminder
+    const taskReminder = reminderDate && reminderTime ? `${reminderDate} ${reminderTime}` : null;
 
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
     const newTask = {
         id: Date.now().toString(),
         name: taskDescription,
         completed: false,
-        reminder: taskReminder || null,
+        reminder: taskReminder,
         importance: taskImportance,
         createdAt: new Date().toISOString()
     };
@@ -72,6 +75,8 @@ const addNewTask = () => {
     saveTasks(tasks); // Save updated tasks to LocalStorage
     loadTasks(); // Refresh task list
     document.getElementById('task-input').value = ''; // Clear input field
+    document.getElementById('reminder-date').value = ''; // Clear date input
+    document.getElementById('reminder-time').value = ''; // Clear time input
 
     // Show notification when a new task is added
     showNotification("Task Added", { body: `New task: ${taskDescription}` });
