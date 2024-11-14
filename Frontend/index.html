@@ -7,6 +7,17 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <!-- Browser Frame -->
+    <div class="browser-frame">
+        <!-- Title Bar -->
+        <div class="title-bar">
+            <div class="nav-buttons">
+                <button class="btn-back">&#9664;</button>
+                <button class="btn-forward">&#9654;</button>
+                <button class="btn-refresh">&#x21bb;</button>
+            </div>
+            <input type="text" class="address-bar" value="http://localhost/task-manager" readonly title="Address Bar">
+        </div>
     <div class="container">
         <h1>Task Manager</h1>
 
@@ -20,8 +31,8 @@
 
         <label for="due-date">Due Date:</label>
         <!-- Date and time picker input -->
-        <input type="date" id="reminder-date" placeholder="Set reminder date">
-        <input type="time" id="reminder-time" placeholder="Set reminder time">
+        <input type="date" id="reminder-date" placeholder="Set reminder date" required>
+        <input type="time" id="reminder-time" placeholder="Set reminder time" required>
 
         <label for="importance">Importance:</label>
         <select id="importance">
