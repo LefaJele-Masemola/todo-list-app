@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="browser-frame">
+        <!-- Title Bar -->
+        <div class="title-bar">
+            <div class="browser-bar">
+                <div class="window-controls">
+                    <span class="close"></span>
+                    <span class="minimize"></span>
+                    <span class="maximize"></span>
+                </div>
+                <input type="text" class="address-bar" value="http://localhost/task-manager" readonly title="Address Bar">
+            </div>
+        </div>
+    
+    <div class="container">
+        <h1>Task Manager</h1>
+
+<!-- Button to toggle Focus Mode -->
+        <button id="focusModeBtn" >Enable Focus Mode</button>
+        <div id="floatingSuggestions" class="suggestionsContainer"></div>
+
+
+        <h3>Enter a Task:</h3>
+        <input type="text" id="task-input" placeholder="Task description" required>
+
+        <label for="due-date">Due Date:</label>
+        <!-- Date and time picker input -->
+        <input type="date" id="reminder-date" placeholder="Set reminder date" required>
+        <input type="time" id="reminder-time" placeholder="Set reminder time" required>
+
+        <label for="importance">Importance:</label>
+        <select id="importance">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
+          
+          <button type="button" onclick="addNewTask()">Add Task</button>
+
+          
+        <h3>Active Tasks:</h3>
+        <ul class="task-list" id="tasks-container"></ul>
+    </div>
+
+     <!-- Focus Mode Overlay -->
+     <div id="focusOverlay" class="focus-overlay">
+        <div class="focus-content">
+            <h2>Focus Mode</h2>
+            <p>Stay focused! Clear your tasks and achieve your goals.</p>
+            <button onclick="toggleFocusMode()">Exit Focus Mode</button>
+        </div>
+    </div>
+</div>
+
+        <!-- Include main script which imports notifications -->
+        <script type="module" src="js/script.js" defer></script>
+        <script type="module" src="js/notifications.js"></script> 
+</body>
+</html>
