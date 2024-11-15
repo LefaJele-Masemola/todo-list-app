@@ -7,22 +7,24 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Browser Frame -->
     <div class="browser-frame">
         <!-- Title Bar -->
         <div class="title-bar">
-            <div class="nav-buttons">
-                <button class="btn-back">&#9664;</button>
-                <button class="btn-forward">&#9654;</button>
-                <button class="btn-refresh">&#x21bb;</button>
+            <div class="browser-bar">
+                <div class="window-controls">
+                    <span class="close"></span>
+                    <span class="minimize"></span>
+                    <span class="maximize"></span>
+                </div>
+                <input type="text" class="address-bar" value="http://localhost/task-manager" readonly title="Address Bar">
             </div>
-            <input type="text" class="address-bar" value="http://localhost/task-manager" readonly title="Address Bar">
         </div>
+    
     <div class="container">
         <h1>Task Manager</h1>
 
 <!-- Button to toggle Focus Mode -->
-        <button id="focusModeBtn" onclick="toggleFocusMode()">Enable Focus Mode</button>
+        <button id="focusModeBtn" >Enable Focus Mode</button>
         <div id="floatingSuggestions" class="suggestionsContainer"></div>
 
 
@@ -41,7 +43,7 @@
             <option value="High">High</option>
           </select>
           
-          <button onclick="addNewTask()">Add Task</button>
+          <button type="button" onclick="addNewTask()">Add Task</button>
 
           
         <h3>Active Tasks:</h3>
@@ -56,9 +58,10 @@
             <button onclick="toggleFocusMode()">Exit Focus Mode</button>
         </div>
     </div>
+</div>
 
         <!-- Include main script which imports notifications -->
-        <script type="module" src="js/script.js"></script>
+        <script type="module" src="js/script.js" defer></script>
         <script type="module" src="js/notifications.js"></script> 
 </body>
 </html>
