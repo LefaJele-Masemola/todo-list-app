@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    overflow: auto;
 }
 
 /* General Settings */
@@ -95,6 +96,8 @@ body {
     margin: 0 auto;
     background: #ffffff;
     padding: 30px;
+    min-height: 100vh;;
+    overflow: visible;
 }
 
 /* Title Bar */
@@ -188,8 +191,8 @@ button:hover { background-color: #006ae3; }
 .task-list {
     list-style-type: none;
     padding-left: 0;
-    max-height: 300px; /* Adjust as needed */
-    /*overflow-y: auto;  Enables scrolling */
+    max-height: 600px; /* Adjust as needed */
+    /*overflow-y: auto;  /*Enables scrolling */
     padding-right: 10px; /* Prevents scrollbar overlap with content */
 }
 
